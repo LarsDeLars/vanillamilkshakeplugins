@@ -1,0 +1,122 @@
+name: PlayerManager
+version: '${project.version}'
+main: augustc.xyz.playermanager.PlayerManager
+api-version: 1.18
+depend: [ Vault ]
+authors: [ AugustCaesar ]
+description: Handles all playerdata
+commands:
+  nickname:
+    description: Sets a players nickname
+    usage: /<commands> <nickname>
+    aliases: [nick]
+  namecolour:
+    description: Change the colour of your name
+    usage: /<command> <colour>
+  addrank:
+    description: Add a rank to a player or add placeholder if player can't rankup yet
+    usage: /<command> <player> <rank>
+  back:
+    description: Teleport to previous location
+    usage: /<command>
+  backpack:
+    description: Opens your backpack
+    usage: /<command>
+    aliases: [bp]
+  afk:
+    description: Toggle AFK status
+    usage: /<command>
+  fly:
+    description: Toggle your fly mode
+    usage: /<command> [player]
+  flycheck:
+    description: Returns if a player has permission to use /fly
+    usage: /<command> <player>
+  sethome:
+    description: Set your home at your current location.
+    usage: /<command> [name]
+  delhome:
+    description: Delete one of your homes.
+    usage: /<command> [name]
+    aliases: [removehome, deletehome]
+  home:
+    description: Teleport to a home.
+    usage: /<command> [home]
+  homes:
+    description: Show all your homes.
+    usage: /<command>
+    aliases: [showhomes, allhomes]
+  heal:
+    description: Heals a player.
+    usage: /<command> [player]
+  setspawn:
+    description: Sets a specific spawn to your current location.
+    usage: /<command> <name>
+  delspawn:
+    description: Delete a specific spawn.
+    usage: /<command> <name>
+    aliases: [deletespawn]
+  spawn:
+    description: Teleports you to your spawn with the highest priority.
+    usage: /<command>
+  tpask:
+    description: Ask to teleport to a player.
+    usage: /<command> <player>
+    aliases: [tpa, tprequest]
+  tpaskhere:
+    description: Ask a player to teleport to you.
+    usage: /<command> <player>
+    aliases: [tpahere, tprequesthere]
+  tpcancel:
+    description: Cancel a teleport request.
+    usage: /<command>
+  tpaccept:
+    description: Accept a teleport request.
+    usage: /<command>
+    aliases: [tpyes, tpok]
+  tpdeny:
+    description: Deny a teleport request.
+    usage: /<command>
+    aliases: [tpno]
+  firstjoined:
+    description: See when you first joined the server.
+    usage: /<command> [player]
+  msg:
+    description: Message a player privately
+    usage: /<command> <player> <message>
+    aliases: [m, w, message, whisper, tell, t]
+  reply:
+    description: Reply to the person you last messaged.
+    usage: /<command> <message>
+    aliases: [r]
+  suicide:
+    description: An easy way to kill yourself/
+    usage: /<command>
+    aliases: [respawn, die]
+  tp:
+    description: Teleport to a person or a set of coordinates.
+    usage: /<command> [player || <x> <y> <z>]
+    aliases: [teleport]
+  tphere:
+    description: Teleport a player to you.
+    usage: /<command> <player>
+    aliases: [teleporthere]
+  survival:
+    description: Switch gamemode to survival
+    usage: /<command> [player]
+    aliases: [surivalmode, survmode]
+  creative:
+    description: Switch gamemode to creative
+    usage: /<command> [player]
+    aliases: [creativemode]
+  spectator:
+    description: Switch gamemode to spectator
+    usage: /<command> [player]
+    aliases: [ specmode, spec, spectatormode ]
+  adventure:
+    description: Switch gamemode to adventure
+    usage: /<command> [player]
+    aliases: [ adventuremode ]
+  me:
+    description: Display your status
+    usage: /<command> <message>
