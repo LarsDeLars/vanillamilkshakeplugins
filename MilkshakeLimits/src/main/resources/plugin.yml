@@ -1,0 +1,9 @@
+name: MilkshakeLimits
+version: '${project.version}'
+main: xyz.augustc.milkshakelimits.MilkshakeLimits
+api-version: 1.19
+authors: [ AugustCaesar ]
+description: Limits to prevent lag
+commands:
+  limits:
+    description: reload - reload config files

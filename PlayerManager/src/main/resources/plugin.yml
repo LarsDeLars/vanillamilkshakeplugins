@@ -2,7 +2,7 @@ name: PlayerManager
 version: '${project.version}'
 main: augustc.xyz.playermanager.PlayerManager
 api-version: 1.18
-depend: [ Vault ]
+depend: [ Vault , LuckPerms ]
 authors: [ AugustCaesar ]
 description: Handles all playerdata
 commands:

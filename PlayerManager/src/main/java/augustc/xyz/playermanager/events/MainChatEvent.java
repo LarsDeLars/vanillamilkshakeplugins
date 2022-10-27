@@ -2,6 +2,9 @@ package augustc.xyz.playermanager.events;
 
 import augustc.xyz.playermanager.PlayerManager;
 import augustc.xyz.playermanager.PlayerProfile;
+import net.luckperms.api.model.group.Group;
+import net.luckperms.api.model.group.GroupManager;
+import net.luckperms.api.model.user.User;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,8 +24,19 @@ public class MainChatEvent implements Listener {
             e.setMessage(translateHexColorCodes(e.getMessage()));
         }
 
-        //set format to: <PREFIX> <DISPLAYNAME>: <MESSAGE>
-        e.setFormat(translateHexColorCodes(PlayerManager.getPlugin().getChat().getPlayerPrefix(p)) + " " + p.getDisplayName() + ChatColor.GRAY + ": " + ChatColor.RESET + e.getMessage());
+        //PlayerManager.getPlugin().getChat().getPlayerPrefix(p)
+
+        User user = PlayerManager.getLuckPerms().getPlayerAdapter(Player.class).getUser(p);
+        String prefix = user.getCachedData().getMetaData().getPrefix();
+
+        if(prefix == null){
+            //set format to: <DISPLAYNAME> » <MESSAGE>
+            e.setFormat(p.getDisplayName() + ChatColor.GRAY + " » " + ChatColor.RESET + e.getMessage());
+        }else{
+            //set format to: <PREFIX> <DISPLAYNAME> » <MESSAGE>
+            e.setFormat(translateHexColorCodes(prefix) + " " + p.getDisplayName() + ChatColor.GRAY + " » " + ChatColor.RESET + e.getMessage());
+        }
+
 
 
     }

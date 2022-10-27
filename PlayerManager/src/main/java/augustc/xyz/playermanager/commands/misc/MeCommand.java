@@ -17,7 +17,7 @@ public class MeCommand implements CommandExecutor {
 
             Player p = (Player) sender;
 
-            if(!p.hasPermission("plyaer.me")){
+            if(!p.hasPermission("player.me")){
                 return Error.returnNoPermissionError(sender);
             }
 

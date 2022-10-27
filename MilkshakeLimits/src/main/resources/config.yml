@@ -1,0 +1,2 @@
+# The tally of all blocks that have limits of a chunk are saved. After this amount of seconds a chunk's tally gets removed from the memory:
+DeleteChunksFromMemoryAfter: 300

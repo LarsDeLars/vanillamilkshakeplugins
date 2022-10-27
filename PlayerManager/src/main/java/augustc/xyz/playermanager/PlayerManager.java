@@ -19,11 +19,11 @@ import augustc.xyz.playermanager.files.serverdata;
 import augustc.xyz.playermanager.tasks.IncreaseAfkTimer;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.permission.Permission;
+import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
-import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -42,6 +42,12 @@ public final class PlayerManager extends JavaPlugin {
 
     private static Permission perms = null;
 
+    public static LuckPerms getLuckPerms() {
+        return luckPerms;
+    }
+
+    private static LuckPerms luckPerms = null;
+
     public Chat getChat() {
         return chat;
     }
@@ -49,11 +55,20 @@ public final class PlayerManager extends JavaPlugin {
     private Chat chat = null;
 
     private boolean setupChat() {
-        getServer().getServicesManager().register(Chat.class, chat, this, ServicePriority.Highest);
-        //RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
-        //chat = rsp.getProvider();
-        chat = getServer().getServicesManager().load(Chat.class);
+//        chat = new ChatImplementation(perms);
+//        getServer().getServicesManager().register(Chat.class, chat, this, ServicePriority.Highest);
+        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+        chat = rsp.getProvider();
         return chat != null;
+    }
+
+    private boolean setupLuckPerms(){
+        RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
+        if (provider != null) {
+            luckPerms = provider.getProvider();
+            return true;
+        }
+        return false;
     }
 
     public static HashMap<Player, PlayerProfile> players = new HashMap<>();
@@ -68,6 +83,9 @@ public final class PlayerManager extends JavaPlugin {
 
         //vault chat
         setupChat();
+
+        //lp
+        setupLuckPerms();
 
         //setup config file
         getConfig().addDefault("idleTimeout", 180);
